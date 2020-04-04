@@ -5,22 +5,27 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-puts "Destroying database..."
-Cocktail.destroy_all
-Ingredient.destroy_all
+require 'json'
+require 'open-uri'
 
-10.times do
-  cocktail = Cocktail.create(
-    name: Faker::Coffee.variety
-  )
+puts "Destroy ingredients"
+Ingredient.destroy_all if Rails.env.development?
 
-  10.times do
-    ingredient = Ingredient.create(
-      name: Faker::Food.fruits
-    )
-  end
+puts "Destroy Cocktails"
+Cocktail.destroy_all if Rails.env.development?
 
-  puts "Cocktail #{cocktail.name} created!"
+puts "Create cocktails"
+url = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail"
+cocktails = JSON.parse(open(url).read)
+cocktails["drinks"].each do |cocktail|
+  a = Cocktail.create(name: cocktail['strDrink'])
+  puts "create #{a.name}"
 end
 
-puts "Done!"
+puts "Create ingredients"
+url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
+ingredients = JSON.parse(open(url).read)
+ingredients["drinks"].each do |ingredient|
+  i = Ingredient.create(name: ingredient['strIngredient1'])
+  puts "create #{i.name}"
+end
