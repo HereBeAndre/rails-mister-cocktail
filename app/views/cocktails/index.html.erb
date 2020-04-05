@@ -1,20 +1,26 @@
-<h1>All our cocktails</h1>
-
-
-<%= link_to 'New cocktail', new_cocktail_path %>
-
-  <div class="row row-cols-1 row-cols-md-4">
-    <% @cocktails.reverse.each do |cocktail| %>
+<div class="banner" src="<%= asset_path( 'banner.jpg' ) %>" style="object-fit: cover; background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%); max-width: 100%; margin: 0 0; ">
+  <div class="container d-flex justify-content-center align-items-center">
+    <h1>Our Menu Of Cocktails</h1>
+    <%= link_to 'New cocktail', new_cocktail_path, :class => "btn btn-outline-light" %>
+  </div>
+  <div class="d-flex justify-content-center row row-cols-1 row-cols-md-4">
+    <% @cocktails.first(9).reverse.each do |cocktail| %>
       <div class="card text-white bg-dark col mb-3 mx-2">
         <img src="<%= asset_path( 'cocktail.jpg' ) %>" class="card-img-top" alt="Description of the cocktail">
         <div class="card-body">
           <h5 class="card-title"><%= cocktail.name %></h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        </div>
+          <p class="card-text">ingredient</p>
+          </div>
         <div class="card-footer">
           <small class="text-muted">⭐ Most popular</small>
+          <div class="btn">
+            <%= link_to 'Show', cocktail_path(cocktail), :class => "btn btn-outline-light" %>
+            <%= link_to 'Edit', root_path, :class => "btn btn-outline-light"%>
+          </div>
         </div>
       </div>
     <% end %>
   </div>
+</div>
 
+<!-- Fix the background image (banner) -->
