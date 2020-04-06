@@ -44,7 +44,7 @@
           <small class="text-muted">⭐ Most popular</small>
           <div class="btn">
             <%= link_to 'Show', cocktail_path(cocktail), :class => "btn btn-outline-light" %>
-            <%= link_to 'Edit', root_path, :class => "btn btn-outline-light"%>
+            <%= link_to 'Edit', cocktail_doses_path(cocktail), method: :post, :class => "btn btn-outline-light"%>
           </div>
         </div>
       </div>
