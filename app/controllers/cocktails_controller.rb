@@ -1,6 +1,6 @@
 class CocktailsController < ApplicationController
   def index
-    @cocktails = Cocktail.all
+    @cocktails = Cocktail.order(updated_at: :desc)
   end
 
   def show
@@ -22,7 +22,19 @@ class CocktailsController < ApplicationController
     end
   end
 
+  def edit
+    @cocktail = Cocktail.find(params[:id])
+    @dose = Dose.new
+  end
+
+  def update
+    @cocktail = Cocktail.find(params[:id])
+    @cocktail.update(cocktails_params)
+    redirect_to cocktails_path, notice: 'Cocktail has been updated.'
+  end
+
   private
+
   def cocktails_params
     params.require(:cocktail).permit(:name)
   end

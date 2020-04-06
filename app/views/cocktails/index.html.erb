@@ -1,8 +1,8 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top" style="width: 100%">
   <%= link_to "#", class: "navbar-brand" do %>
-    <%= image_tag "/assets/images/logo.png" %>
+    <%= image_tag "logo.png" %>
   <% end %>
-  <h1>Cocktails Club</h1>
+  <h1>SpeakEasy Club</h1>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -29,27 +29,22 @@
 <br>
 <br>
 
-<div class="banner" src="<%= asset_path( 'banner.jpg' ) %>" style="object-fit: cover; background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%); max-width: 100%; margin: 0 0; ">
-  <div class="container d-flex justify-content-center align-items-center">
-  </div>
+<div class="container d-flex justify-content-center align-items-center">
   <div class="d-flex justify-content-center row row-cols-1 row-cols-md-4">
-    <% @cocktails.first(9).reverse.each do |cocktail| %>
+    <% @cocktails.first(9).each do |cocktail| %>
       <div class="card text-white bg-dark col mb-3 mx-2">
         <img src="<%= asset_path( 'cocktail.jpg' ) %>" class="card-img-top" alt="Description of the cocktail">
         <div class="card-body">
           <h5 class="card-title"><%= cocktail.name %></h5>
-          <p class="card-text">ingredient</p>
-          </div>
+        </div>
         <div class="card-footer">
           <small class="text-muted">⭐ Most popular</small>
           <div class="btn">
             <%= link_to 'Show', cocktail_path(cocktail), :class => "btn btn-outline-light" %>
-            <%= link_to 'Edit', cocktail_doses_path(cocktail), method: :post, :class => "btn btn-outline-light"%>
+            <%= link_to 'Edit', edit_cocktail_path(cocktail), :class => "btn btn-outline-light"%>
           </div>
         </div>
       </div>
     <% end %>
   </div>
 </div>
-
-<!-- Fix the background image (banner) -->
