@@ -1,4 +1,4 @@
-<h5>Add A New Dose</h5>
+<h5 style="font-weight: bolder; text-shadow: 2px 1px 4px black">Add A New Dose</h5>
 <%= simple_form_for [@cocktail, @dose] do |f| %>
   <%= f.association :ingredient, input_html: { class: "beautiful-dropdown" }, include_hidden: false %>
   <%= f.input :description %>
