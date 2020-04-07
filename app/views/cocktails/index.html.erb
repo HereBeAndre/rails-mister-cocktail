@@ -1,12 +1,5 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top" style="width: 100%">
-    <%= simple_form_for :search, url: root_path, method: :get do |f| %>
-      <div class="d-flex search-form-control form-group">
-        <input class="form-control string required" type="text" name="search[query]" id="search_query" />
-        <button name="button" type="submit" class="btn btn-flat" >
-          <i class="fas fa-search"></i> Search
-        </button>
-      </div>
-    <% end %>
+
   <%= link_to "#", class: "navbar-brand d-flex align-items-center" do %>
     <%= image_tag "logo.png" %>
     <h1 style="font-weight: bolder; color: rgb(52, 58, 64)">SpeakEasy Club</h1>
@@ -18,7 +11,15 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <%= link_to "Home", "#", class: "nav-link" %>
+        <%= simple_form_for :search, url: root_path, method: :get do |f| %>
+          <div class="d-flex search-form-control form-group">
+            <input class="form-control string required" type="text" name="search[query]" id="search_query" />
+            <button name="button" type="submit" class="btn btn-flat" >
+              <i class="fas fa-search"></i> Search
+            </button>
+          </div>
+        <% end %>
+        <%= link_to "Home", root_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
         <%= link_to 'New cocktail', new_cocktail_path, class: "nav-link" %>
@@ -37,7 +38,7 @@
   <div class="d-flex justify-content-center row row-cols-3 row-cols-md-4 row-cols-lg-4">
     <% @cocktails.first(9).each do |cocktail| %>
       <div class="card text-white bg-dark col mb-3 mx-2">
-        <img src="<%= cl_image_path("ukddzfvqyoourradip9d.jpg") %>" class="card-img-top" alt="Description of the cocktail">
+        <img src="<%= cl_image_path("card_cocktail.jpg") %>" class="card-img-top" alt="Description of the cocktail">
         <div class="card-body">
           <h5 class="card-title"><%= cocktail.name %></h5>
         </div>
