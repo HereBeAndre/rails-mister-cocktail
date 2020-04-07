@@ -1,6 +1,10 @@
 class CocktailsController < ApplicationController
   def index
+    if params.has_key?(:search)
+      @cocktails = Cocktail.where("name LIKE ?", "%#{params[:search][:query]}%")
+    else
     @cocktails = Cocktail.order(updated_at: :desc)
+    end
   end
 
   def show
